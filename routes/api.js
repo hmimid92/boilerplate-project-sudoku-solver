@@ -8,8 +8,57 @@ module.exports = function (app) {
 
   app.route('/api/check')
     .post((req, res) => {
-
-    });
+      let row = req.body.coordinate.split("")[0];
+      let col = Number(req.body.coordinate.split("")[1]);
+      let val = req.body.value;
+      let puzzleString =req.body.puzzle;
+      switch(row) {
+        case 'A': row = 0;
+                 break;
+        case 'B': row = 1;
+                 break; 
+        case 'C': row = 2;
+                 break;        
+        case 'D': row = 3;
+                 break;
+        case 'E': row = 4;
+                 break; 
+        case 'F': row = 5;
+                 break;
+        case 'G': row = 6;
+                 break;
+        case 'H': row = 7;
+                 break; 
+        case 'I': row = 8;
+                 break;  
+        default: 
+                 row = 'invalid';               
+      }
+      let validRow, validCol, validReg, conflict = [];
+      if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
+          validRow = true;
+      } else {
+          conflict.push("row");
+      }
+     if(solver.checkColPlacement(puzzleString,row,col,val)) {
+          validCol = true;
+        } else {
+          conflict.push("column");
+        }
+     if(solver.checkRegionPlacement(puzzleString,row,col,val)) {
+          validReg = true;
+     } else {
+          conflict.push("region");
+     }
+     if(conflict.length === 0) {
+      res.json({ "valid": validRow && validReg && validCol });
+     } else {
+      res.json({ 
+        "valid": validRow && validReg && validCol,
+        "conflict": conflict
+      });
+     }
+   });
     
   app.route('/api/solve')
     .post((req, res) => {
