@@ -40,15 +40,11 @@ class SudokuSolver {
       }
     });
       sudoko.push(arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9);
-      if(sudoko[row][column] === '.') {
         if(sudoko[row].includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }  
   }
   
  checkColPlacement(puzzleString, row, column, value) {
@@ -107,15 +103,11 @@ class SudokuSolver {
         col9.push(sudoko[i][8]);
       }
       sudoko1.push(col1,col2,col3,col4,col5,col6,col7,col8,col9);  
-    if(sudoko[row][column] === '.') {
         if(sudoko1[column].includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
    }
   
  checkRegionPlacement(puzzleString, row, column, value) {
@@ -197,108 +189,72 @@ class SudokuSolver {
       }
     sudoko1.push(reg1,reg2,reg3,reg4,reg5,reg6,reg7,reg8,reg9);
     if(row < 3 && column < 3) {
-       if(sudoko[row][column] === '.') {
         if(reg1.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
     
     if(row < 3 && (column < 6 && column >=3)) {
-       if(sudoko[row][column] === '.') {
         if(reg4.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
   
      if(row < 3 && (column <9 && column >=6)) {
-      if(sudoko[row][column] === '.') {
         if(reg7.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
   
     if((row < 6 && row >= 3) && column <3) {
-      if(sudoko[row][column] === '.') {
         if(reg2.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
     if((row < 6 && row >= 3) && (column <6 && column >= 3)) {
-      if(sudoko[row][column] === '.') {
         if(reg5.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
    if((row < 6 && row >= 3) && (column <9 && column >= 6)) {
-      if(sudoko[row][column] === '.') {
         if(reg8.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
     if((row < 9 && row >= 6) && column <3) {
-      if(sudoko[row][column] === '.') {
         if(reg3.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
   
     if((row < 9 && row >= 6) && (column <6 && column >= 3)) {
-      if(sudoko[row][column] === '.') {
         if(reg6.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
   
     if((row < 9 && row >= 6) && (column <9 && column >= 6)) {
-      if(sudoko[row][column] === '.') {
         if(reg9.includes(value)) {
           return false;
         } else {
           return true;
         }
-      } else {
-        return false;
-      }
     }
   }
   

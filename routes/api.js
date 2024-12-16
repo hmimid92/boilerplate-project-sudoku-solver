@@ -9,7 +9,7 @@ module.exports = function (app) {
   app.route('/api/check')
     .post((req, res) => {
       let row = req.body.coordinate.split("")[0];
-      let col = Number(req.body.coordinate.split("")[1]);
+      let col = Number(req.body.coordinate.split("")[1])-1;
       let val = req.body.value;
       let puzzleString =req.body.puzzle;
       switch(row) {
@@ -34,6 +34,7 @@ module.exports = function (app) {
         default: 
                  row = 'invalid';               
       }
+
       let validRow, validCol, validReg, conflict = [];
       if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
           validRow = true;
