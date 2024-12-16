@@ -55,7 +55,7 @@ module.exports = function (app) {
       res.json({ "valid": validRow && validReg && validCol });
      } else {
       res.json({ 
-        "valid": validRow && validReg && validCol,
+        "valid": false,
         "conflict": conflict
       });
      }
