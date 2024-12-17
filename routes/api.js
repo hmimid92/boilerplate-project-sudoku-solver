@@ -11,7 +11,7 @@ module.exports = function (app) {
       let row = req.body.coordinate.split("")[0];
       let col = Number(req.body.coordinate.split("")[1])-1;
       let val = req.body.value;
-      let puzzleString =req.body.puzzle;
+      let puzzleString = req.body.puzzle;
       if(!puzzleString || !req.body.coordinate || !val ) {
         res.json({ error: 'Required field(s) missing' });
         return;
@@ -21,7 +21,7 @@ module.exports = function (app) {
         return;
       } 
 
-      if(!(/[0-8]/g.test(col) && /[A-I]/g.test(row))) {
+      if(!((col < 0 || col > 8) && /[A-I]/g.test(row))) {
         res.json({ error: 'Invalid coordinate'});
          return;
       }
