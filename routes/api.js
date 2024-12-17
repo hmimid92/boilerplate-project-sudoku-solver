@@ -18,12 +18,12 @@ module.exports = function (app) {
          return;
       }
       let val = req.body.value;
-      if(Number(val) > 9 || Number(val) < 1 ) {
-        res.json({ error: 'Invalid value' });
-        return;
-      } 
       if(!puzzleString || !req.body.coordinate || !val ) {
         res.json({ error: 'Required field(s) missing' });
+        return;
+      } 
+      if(Number(val) > 9 || Number(val) < 1 ) {
+        res.json({ error: 'Invalid value' });
         return;
       } 
       let row = req.body.coordinate.split("")[0];
