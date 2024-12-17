@@ -257,20 +257,22 @@ class SudokuSolver {
         }
     }
   }
-  
- isValid(board, row, col, k) {
-      for (let i = 0; i < 9; i++) {
-          const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
-          const n = 3 * Math.floor(col / 3) + i % 3;
-          if (board[row][i] == k || board[i][col] == k || board[m][n] == k) {
-            return false;
-          }
-      }
-      return true;
-  }
-  
-  
+
  solve(puzzleString) {
+   let puzzleSolved;
+   function solvePuzzle(puzzleString) {
+
+      function isValid(board, row, col, k) {
+        for (let i = 0; i < 9; i++) {
+            const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+            const n = 3 * Math.floor(col / 3) + i % 3;
+            if (board[row][i] == k || board[i][col] == k || board[m][n] == k) {
+              return false;
+            }
+        }
+        return true;
+      }
+
   let arr1 = [],
       arr2 = [], 
       arr3 = [],
@@ -310,7 +312,7 @@ class SudokuSolver {
           for (let k = 1; k <= 9; k++) {
             if (isValid(sudoko, i, j, k)) {
               sudoko[i][j] = `${k}`;
-            if (solve(sudoko.flat().join(''))) {
+            if (solvePuzzle(sudoko.flat().join(''))) {
              return true;
             } else {
              sudoko[i][j] = '.';
@@ -321,8 +323,11 @@ class SudokuSolver {
        }
      }
    }
+   puzzleSolved = sudoko.flat().join('');
    }
-  
+   solvePuzzle(puzzleString);
+   return puzzleSolved;
+ }
 }
 
 module.exports = SudokuSolver;

@@ -14,7 +14,7 @@ textArea.addEventListener("input", () => {
 });
 
 function fillpuzzle(data) {
-  let len = data.length < 81 ? data.length : 81;
+  let len = data.length < 81 ? data.length : 81; 
   for (let i = 0; i < len; i++) {
     let rowLetter = String.fromCharCode('A'.charCodeAt(0) + Math.floor(i / 9));
     let col = (i % 9) + 1; 
