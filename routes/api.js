@@ -12,6 +12,19 @@ module.exports = function (app) {
       let col = Number(req.body.coordinate.split("")[1])-1;
       let val = req.body.value;
       let puzzleString =req.body.puzzle;
+      if(!puzzleString || !req.body.coordinate || !val ) {
+        res.json({ error: 'Required field(s) missing' });
+        return;
+      } 
+      if(Number(val) > 9 || Number(val) < 1 ) {
+        res.json({ error: 'Invalid value' });
+        return;
+      } 
+
+      if(!(/[0-8]/g.test(col) && /[A-I]/g.test(row))) {
+        res.json({ error: 'Invalid coordinate'});
+         return;
+      }
       switch(row) {
         case 'A': row = 0;
                  break;
@@ -79,6 +92,17 @@ module.exports = function (app) {
           return;
         }
       }
+
+      if(!puzzleString.split('').every(el => /[1-9]|\./g.test(el))) {
+        res.json({ error: 'Invalid characters in puzzle' });
+         return;
+      }
+
+      if(!solver.validate(puzzleString)) {
+        res.json({ error: 'Expected puzzle to be 81 characters long' });
+         return;
+      }
+
 
       let validRow, validCol, validReg, conflict = [];
       if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
