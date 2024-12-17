@@ -9,6 +9,11 @@ module.exports = function (app) {
   app.route('/api/check')
     .post((req, res) => {
       let puzzleString = req.body.puzzle;
+      let val = req.body.value;
+      if(!puzzleString || !req.body.coordinate || !val ) {
+        res.json({ error: 'Required field(s) missing' });
+        return;
+      } 
       if(!puzzleString.split('').every(el => /[1-9]|\./g.test(el))) {
         res.json({ error: 'Invalid characters in puzzle' });
          return;
@@ -17,11 +22,7 @@ module.exports = function (app) {
         res.json({ error: 'Expected puzzle to be 81 characters long' });
          return;
       }
-      let val = req.body.value;
-      if(!puzzleString || !req.body.coordinate || !val ) {
-        res.json({ error: 'Required field(s) missing' });
-        return;
-      } 
+     
       if(Number(val) > 9 || Number(val) < 1 ) {
         res.json({ error: 'Invalid value' });
         return;
