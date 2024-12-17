@@ -69,14 +69,16 @@ module.exports = function (app) {
       }
     });
       sudoko.push(arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9);
-      if(
-        sudoko[row][col] === val &&
-        solver.checkRowPlacement(puzzleString,row,col,val) &&
-        solver.checkColPlacement(puzzleString,row,col,val) &&
-        solver.checkRegionPlacement(puzzleString,row,col,val)
-      ) {
-        res.json({ "valid": true });
-        return;
+      if(sudoko[row][col] !== '.') {
+        if(
+          solver.checkRowPlacement(puzzleString,row,col,val) &&
+          solver.checkColPlacement(puzzleString,row,col,val) &&
+          solver.checkRegionPlacement(puzzleString,row,col,val)
+        ) {
+          console.log("exist")
+          res.json({ "valid": true });
+          return;
+        }
       }
 
       let validRow, validCol, validReg, conflict = [];

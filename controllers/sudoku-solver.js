@@ -7,7 +7,7 @@ class SudokuSolver {
 
  checkRowPlacement(puzzleString, row, column, value) {
     let arr1 = [],
-      arr2 = [], 
+      arr2 = [],  
       arr3 = [],
       arr4 = [], 
       arr5 = [],
