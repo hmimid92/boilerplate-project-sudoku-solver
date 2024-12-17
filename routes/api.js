@@ -68,14 +68,15 @@ module.exports = function (app) {
         res.json({ error: 'Invalid characters in puzzle' });
          return;
       }
-      if(!solver.validate(puzzleString) && puzzleString.split('').length !== 0) {
-        res.json({ error: 'Expected puzzle to be 81 characters long' });
-         return;
-      }
+      
       if(!puzzleString) {
         res.json({ error: 'Required field missing' });
         return;
       } else {
+        if(!solver.validate(puzzleString)) {
+          res.json({ error: 'Expected puzzle to be 81 characters long' });
+           return;
+        }
         if(!solver.solve(puzzleString)) {
           res.json({ error: 'Puzzle cannot be solved' });
         } else {
