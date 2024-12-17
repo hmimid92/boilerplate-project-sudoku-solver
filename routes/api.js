@@ -69,7 +69,7 @@ module.exports = function (app) {
          return;
       }
       
-      if(!puzzleString) {
+      if(puzzleString.split("").length === 0) {
         res.json({ error: 'Required field missing' });
         return;
       } else {
