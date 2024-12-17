@@ -8,14 +8,15 @@ module.exports = function (app) {
 
   app.route('/api/check')
     .post((req, res) => {
-      let row = req.body.coordinate.split("")[0];
-      let col = Number(req.body.coordinate.split("")[1])-1;
       let val = req.body.value;
-      let puzzleString = req.body.puzzle;
       if(!puzzleString || !req.body.coordinate || !val ) {
         res.json({ error: 'Required field(s) missing' });
         return;
       } 
+      let row = req.body.coordinate.split("")[0];
+      let col = Number(req.body.coordinate.split("")[1])-1;
+      let puzzleString = req.body.puzzle;
+      
       if(Number(val) > 9 || Number(val) < 1 ) {
         res.json({ error: 'Invalid value' });
         return;
