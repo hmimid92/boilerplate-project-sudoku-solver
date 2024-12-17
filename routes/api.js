@@ -29,10 +29,10 @@ module.exports = function (app) {
       let row = req.body.coordinate.split("")[0];
       let col = Number(req.body.coordinate.split("")[1])-1;
 
-      if(!((col < 0 || col > 8) && /[A-I]/g.test(row))) {
-        res.json({ error: 'Invalid coordinate'});
-         return;
-      }
+      // if(!((col < 0 || col > 8) && /[A-I]/g.test(row))) {
+      //   res.json({ error: 'Invalid coordinate'});
+      //    return;
+      // }
       switch(row) {
         case 'A': row = 0;
                  break;
