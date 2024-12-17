@@ -102,7 +102,7 @@ class SudokuSolver {
         col8.push(sudoko[i][7]);
         col9.push(sudoko[i][8]);
       }
-      sudoko1.push(col1,col2,col3,col4,col5,col6,col7,col8,col9);  
+      sudoko1.push(col1,col2,col3,col4,col5,col6,col7,col8,col9); 
         if(sudoko1[column].includes(value)) {
           return false;
         } else {
@@ -193,7 +193,7 @@ class SudokuSolver {
           return false;
         } else {
           return true;
-        }
+        } 
     }
     
     if(row < 3 && (column < 6 && column >=3)) {
@@ -201,7 +201,7 @@ class SudokuSolver {
           return false;
         } else {
           return true;
-        }
+        } 
     }
   
      if(row < 3 && (column <9 && column >=6)) {
