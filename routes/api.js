@@ -74,6 +74,7 @@ module.exports = function (app) {
       }
       if(!puzzleString) {
         res.json({ error: 'Required field missing' });
+        return;
       } else {
         if(!solver.solve(puzzleString)) {
           res.json({ error: 'Puzzle cannot be solved' });
