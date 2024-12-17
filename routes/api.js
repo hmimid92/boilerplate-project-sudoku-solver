@@ -69,7 +69,7 @@ module.exports = function (app) {
       }
     });
       sudoko.push(arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9);
-      if(sudoko[row][col] !== '.') {
+      if(sudoko[row][col] === val) {
         if(
           solver.checkRowPlacement(puzzleString,row,col,val) &&
           solver.checkColPlacement(puzzleString,row,col,val) &&
