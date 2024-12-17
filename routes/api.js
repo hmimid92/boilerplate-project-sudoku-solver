@@ -10,12 +10,7 @@ module.exports = function (app) {
     .post((req, res) => {
       let puzzleString = req.body.puzzle;
       let val = req.body.value;
-      let row = req.body.coordinate.split("")[0];
-      let col = Number(req.body.coordinate.split("")[1])-1;
-      if(!((col < 0 || col > 8) && /[A-I]/g.test(row))) {
-        res.json({ error: 'Invalid coordinate'});
-         return;
-      }
+     
       if(Number(val) > 9 || Number(val) < 1 ) {
         console.log(val)
         res.json({ error: 'Invalid value' });
@@ -25,6 +20,12 @@ module.exports = function (app) {
         res.json({ error: 'Required field(s) missing' });
         return;
       } 
+      let row = req.body.coordinate.split("")[0];
+      let col = Number(req.body.coordinate.split("")[1])-1;
+      if(!((col < 0 || col > 8) && /[A-I]/g.test(row))) {
+        res.json({ error: 'Invalid coordinate'});
+         return;
+      }
       if(!puzzleString.split('').every(el => /[1-9]|\./g.test(el))) {
         res.json({ error: 'Invalid characters in puzzle' });
          return;
