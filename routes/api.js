@@ -48,6 +48,17 @@ module.exports = function (app) {
                  row = 'invalid';               
       }
 
+
+      if(!puzzleString.split('').every(el => /[1-9]|\./g.test(el))) {
+        res.json({ error: 'Invalid characters in puzzle' });
+         return;
+      }
+
+      if(!solver.validate(puzzleString)) {
+        res.json({ error: 'Expected puzzle to be 81 characters long' });
+         return;
+      }
+
       let arr1 = [],
       arr2 = [], 
       arr3 = [],
@@ -92,18 +103,6 @@ module.exports = function (app) {
           return;
         }
       }
-
-      if(!puzzleString.split('').every(el => /[1-9]|\./g.test(el))) {
-        res.json({ error: 'Invalid characters in puzzle' });
-         return;
-      }
-
-      if(!solver.validate(puzzleString)) {
-        res.json({ error: 'Expected puzzle to be 81 characters long' });
-         return;
-      }
-
-
       let validRow, validCol, validReg, conflict = [];
       if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
           validRow = true;
