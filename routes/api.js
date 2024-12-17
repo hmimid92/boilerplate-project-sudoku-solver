@@ -75,36 +75,35 @@ module.exports = function (app) {
           solver.checkColPlacement(puzzleString,row,col,val) &&
           solver.checkRegionPlacement(puzzleString,row,col,val)
         ) {
-          console.log("exist")
           res.json({ "valid": true });
           return;
-        }
-      }
-
-      let validRow, validCol, validReg, conflict = [];
-      if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
-          validRow = true;
-      } else {
-          conflict.push("row");
-      }
-     if(solver.checkColPlacement(puzzleString,row,col,val)) {
-          validCol = true;
         } else {
-          conflict.push("column");
+          let validRow, validCol, validReg, conflict = [];
+          if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
+              validRow = true;
+          } else {
+              conflict.push("row");
+          }
+         if(solver.checkColPlacement(puzzleString,row,col,val)) {
+              validCol = true;
+            } else {
+              conflict.push("column");
+            }
+         if(solver.checkRegionPlacement(puzzleString,row,col,val)) {
+              validReg = true;
+         } else {
+              conflict.push("region");
+         }
+         if(conflict.length === 0) {
+          res.json({ "valid": validRow && validReg && validCol });
+         } else {
+          res.json({ 
+            "valid": false,
+            "conflict": conflict
+          });
+         }
         }
-     if(solver.checkRegionPlacement(puzzleString,row,col,val)) {
-          validReg = true;
-     } else {
-          conflict.push("region");
-     }
-     if(conflict.length === 0) {
-      res.json({ "valid": validRow && validReg && validCol });
-     } else {
-      res.json({ 
-        "valid": false,
-        "conflict": conflict
-      });
-     }
+      }
    });
     
   app.route('/api/solve')
