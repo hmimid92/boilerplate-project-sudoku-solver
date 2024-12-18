@@ -10,10 +10,10 @@ module.exports = function (app) {
     .post((req, res) => {
       let puzzleString = req.body.puzzle;
       let val = req.body.value;
-      // if(!puzzleString || !req.body.coordinate || !val ) {
-      //   res.json({ error: 'Required field(s) missing' });
-      //   return;
-      // } 
+      if(!puzzleString || !req.body.coordinate || !val ) {
+        res.json({ error: 'Required field(s) missing' });
+        return;
+      } 
       // if(!solver.validate(puzzleString)) {
       //   res.json({ error: 'Expected puzzle to be 81 characters long' });
       //    return;
@@ -106,7 +106,7 @@ module.exports = function (app) {
     //     return;
     //   }
       let validRow, validCol, validReg, conflict = [];
-  if(sudoko[row][col] === '.') {
+  if(sudoko[row][col] !== val) {
         if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
           validRow = true;
       } else {
