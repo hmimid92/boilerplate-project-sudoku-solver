@@ -18,7 +18,7 @@ module.exports = function (app) {
         res.json({ error: 'Expected puzzle to be 81 characters long' });
          return;
       } 
-      if(!(Number(val) < 9 && Number(val) > 1 )) {
+      if(!(Number(val) < 10 && Number(val) > 0 )) {
           res.json({ error: 'Invalid value' });
           return;
         } 
