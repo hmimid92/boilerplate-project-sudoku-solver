@@ -32,7 +32,7 @@ module.exports = function (app) {
 
       let row = req.body.coordinate.split("")[0];
       let col = Number(req.body.coordinate.split("")[1])-1;
-      if(!((col >= 0 && col < 9) && /[A-I]/g.test(row))) {
+      if(!((col >= 0 && col < 9) && (/[A-I]/g.test(row)))) {
         res.json({ error: 'Invalid coordinate'});
          return;
       }
@@ -92,7 +92,7 @@ module.exports = function (app) {
       }
     });
       sudoko.push(arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9);
-      if(sudoko[row][col] === val) {
+      if((sudoko[row][col] !== val) && (val !== '.')) {
         if(
           solver.checkRowPlacement(puzzleString,row,col,val) &&
           solver.checkColPlacement(puzzleString,row,col,val) &&
