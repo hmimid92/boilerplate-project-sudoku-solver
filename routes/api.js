@@ -106,7 +106,7 @@ module.exports = function (app) {
     //     return;
     //   }
       let validRow, validCol, validReg, conflict = [];
-  if(sudoko[row][col] === val) {
+  if(sudoko[row][col] !== val) {
         if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
           validRow = true;
       } else {
@@ -124,13 +124,17 @@ module.exports = function (app) {
      }
      if(conflict.length === 0) {
       res.json({ "valid": validRow && validReg && validCol });
+      return;
      } else {
       res.json({ 
         "valid": false,
         "conflict": conflict
       });
+      return;
      }
-      } else {
+      } 
+      
+      if(sudoko[row][col] === val) {
              if(
                 solver.checkRowPlacement(puzzleString,row,col,val) &&
                 solver.checkColPlacement(puzzleString,row,col,val) &&
@@ -139,7 +143,7 @@ module.exports = function (app) {
                 res.json({ "valid": true });
                 return;
               }
-      }
+         }
        
    });
     
