@@ -14,6 +14,10 @@ module.exports = function (app) {
         res.json({ error: 'Required field(s) missing' });
         return;
       } 
+      if(!solver.validate(puzzleString)) {
+        res.json({ error: 'Expected puzzle to be 81 characters long' });
+         return;
+      } 
       if(!(Number(val) < 9 && Number(val) > 1 )) {
           res.json({ error: 'Invalid value' });
           return;
@@ -24,17 +28,9 @@ module.exports = function (app) {
          return;
       }
 
-      if(!solver.validate(puzzleString)) {
-        res.json({ error: 'Expected puzzle to be 81 characters long' });
-         return;
-      } 
-
       let row = req.body.coordinate.split("")[0];
       let col = Number(req.body.coordinate.split("")[1])-1;
-      // if(!((col >= 0 && col < 9) && (/[A-I]/g.test(row)))) {
-      //   res.json({ error: 'Invalid coordinate'});
-      //    return;
-      // }
+    
       switch(row) {
         case 'A': row = 0;
                  break;
@@ -55,7 +51,12 @@ module.exports = function (app) {
         case 'I': row = 8;
                  break;  
         default: 
-                 row = 'invalid';               
+              row = 'invalid';               
+      }
+
+      if(!((col >= 0 && col < 9) && (row === 'invalid'))) {
+        res.json({ error: 'Invalid coordinate'});
+         return;
       }
     //   let arr1 = [],
     //   arr2 = [], 
