@@ -14,19 +14,19 @@ module.exports = function (app) {
         res.json({ error: 'Required field(s) missing' });
         return;
       } 
-      // if(!solver.validate(puzzleString)) {
-      //   res.json({ error: 'Expected puzzle to be 81 characters long' });
-      //    return;
-      // } 
-      // if(!(Number(val) < 9 && Number(val) > 1 )) {
-      //     res.json({ error: 'Invalid value' });
-      //     return;
-      //   } 
+      if(!solver.validate(puzzleString)) {
+        res.json({ error: 'Expected puzzle to be 81 characters long' });
+         return;
+      } 
+      if(!(Number(val) < 9 && Number(val) > 1 )) {
+          res.json({ error: 'Invalid value' });
+          return;
+        } 
           
-      // if(!(puzzleString.split('').every(el => /[1-9]|\./g.test(el)))) {
-      //   res.json({ error: 'Invalid characters in puzzle' });
-      //    return;
-      // }
+      if(!(puzzleString.split('').every(el => /[1-9]|\./g.test(el)))) {
+        res.json({ error: 'Invalid characters in puzzle' });
+         return;
+      }
 
       let row = req.body.coordinate.split("")[0];
       let col = Number(req.body.coordinate.split("")[1])-1;
