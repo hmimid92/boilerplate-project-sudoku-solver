@@ -106,7 +106,7 @@ module.exports = function (app) {
     //     return;
     //   }
       let validRow, validCol, validReg, conflict = [];
-  if(sudoko[row][col] !== val) {
+  if(sudoko[row][col] === val) {
         if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
           validRow = true;
       } else {
