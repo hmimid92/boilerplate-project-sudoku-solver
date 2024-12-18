@@ -58,40 +58,40 @@ module.exports = function (app) {
       //   res.json({ error: 'Invalid coordinate'});
       //    return;
       // }
-    //   let arr1 = [],
-    //   arr2 = [], 
-    //   arr3 = [],
-    //   arr4 = [], 
-    //   arr5 = [],
-    //   arr6 = [], 
-    //   arr7 = [],
-    //   arr8 = [], 
-    //   arr9 = [];
-    // let sudoko = [];
-    // let arrAll = puzzleString.split("");
+      let arr1 = [],
+      arr2 = [], 
+      arr3 = [],
+      arr4 = [], 
+      arr5 = [],
+      arr6 = [], 
+      arr7 = [],
+      arr8 = [], 
+      arr9 = [];
+    let sudoko = [];
+    let arrAll = puzzleString.split("");
     
-    // arrAll.forEach((el,i) => {
-    //   if(i < 9) {
-    //     arr1.push(el);
-    //   } else if(i < 18) {
-    //     arr2.push(el);
-    //   } else if(i < 27) {
-    //     arr3.push(el);
-    //   } else if(i < 36) {
-    //     arr4.push(el);
-    //   } else if(i < 45) {
-    //     arr5.push(el);
-    //   } else if(i < 54) {
-    //     arr6.push(el);
-    //   } else if(i < 63) {
-    //     arr7.push(el);
-    //   } else if(i < 72) {
-    //     arr8.push(el);
-    //   } else if(i < 81) {
-    //     arr9.push(el);
-    //   }
-    // });
-    //   sudoko.push(arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9);
+    arrAll.forEach((el,i) => {
+      if(i < 9) {
+        arr1.push(el);
+      } else if(i < 18) {
+        arr2.push(el);
+      } else if(i < 27) {
+        arr3.push(el);
+      } else if(i < 36) {
+        arr4.push(el);
+      } else if(i < 45) {
+        arr5.push(el);
+      } else if(i < 54) {
+        arr6.push(el);
+      } else if(i < 63) {
+        arr7.push(el);
+      } else if(i < 72) {
+        arr8.push(el);
+      } else if(i < 81) {
+        arr9.push(el);
+      }
+    });
+      sudoko.push(arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9);
     //   if((sudoko[row][col] !== val) && (val !== '.')) {
     //     if(
     //       solver.checkRowPlacement(puzzleString,row,col,val) &&
@@ -106,29 +106,32 @@ module.exports = function (app) {
     //     return;
     //   }
       let validRow, validCol, validReg, conflict = [];
+  if(sudoko[row][col] === '.') {
         if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
-            validRow = true;
+          validRow = true;
+      } else {
+          conflict.push("row");
+      }
+     if(solver.checkColPlacement(puzzleString,row,col,val)) {
+          validCol = true;
         } else {
-            conflict.push("row");
+          conflict.push("column");
         }
-       if(solver.checkColPlacement(puzzleString,row,col,val)) {
-            validCol = true;
-          } else {
-            conflict.push("column");
-          }
-       if(solver.checkRegionPlacement(puzzleString,row,col,val)) {
-            validReg = true;
-       } else {
-            conflict.push("region");
-       }
-       if(conflict.length === 0) {
-        res.json({ "valid": validRow && validReg && validCol });
-       } else {
-        res.json({ 
-          "valid": false,
-          "conflict": conflict
-        });
-       }
+     if(solver.checkRegionPlacement(puzzleString,row,col,val)) {
+          validReg = true;
+     } else {
+          conflict.push("region");
+     }
+     if(conflict.length === 0) {
+      res.json({ "valid": validRow && validReg && validCol });
+     } else {
+      res.json({ 
+        "valid": false,
+        "conflict": conflict
+      });
+     }
+      }
+       
    });
     
   app.route('/api/solve')
