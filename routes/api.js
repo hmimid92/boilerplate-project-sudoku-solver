@@ -13,29 +13,28 @@ module.exports = function (app) {
       if(!puzzleString || !req.body.coordinate || !val ) {
         res.json({ error: 'Required field(s) missing' });
         return;
-      } else {
-        if(!(Number(val) < 9 && Number(val) > 1 )) {
+      } 
+      if(!(Number(val) < 9 && Number(val) > 1 )) {
           res.json({ error: 'Invalid value' });
           return;
-        } else {
-          if(!solver.validate(puzzleString)) {
-            res.json({ error: 'Expected puzzle to be 81 characters long' });
-             return;
-          } else {
-            if(!(puzzleString.split('').every(el => /[1-9]|\./g.test(el)))) {
-              res.json({ error: 'Invalid characters in puzzle' });
-               return;
-            }
-          }
         } 
+          
+      if(!(puzzleString.split('').every(el => /[1-9]|\./g.test(el)))) {
+        res.json({ error: 'Invalid characters in puzzle' });
+         return;
       }
+
+      if(!solver.validate(puzzleString)) {
+        res.json({ error: 'Expected puzzle to be 81 characters long' });
+         return;
+      } 
 
       let row = req.body.coordinate.split("")[0];
       let col = Number(req.body.coordinate.split("")[1])-1;
-      if(!((col >= 0 && col < 9) && (/[A-I]/g.test(row)))) {
-        res.json({ error: 'Invalid coordinate'});
-         return;
-      }
+      // if(!((col >= 0 && col < 9) && (/[A-I]/g.test(row)))) {
+      //   res.json({ error: 'Invalid coordinate'});
+      //    return;
+      // }
       switch(row) {
         case 'A': row = 0;
                  break;
