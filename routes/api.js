@@ -54,7 +54,7 @@ module.exports = function (app) {
               row = 'invalid';               
       }
 
-      if(!((col >= 0 && col < 9) && (row === 'invalid'))) {
+      if((!(col >= 0 && col < 9) || (row === 'invalid'))) {
         res.json({ error: 'Invalid coordinate'});
          return;
       }
