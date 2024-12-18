@@ -23,10 +23,10 @@ module.exports = function (app) {
           return;
         } 
           
-      if(!(puzzleString.split('').every(el => /[1-9]|\./g.test(el)))) {
-        res.json({ error: 'Invalid characters in puzzle' });
-         return;
-      }
+      // if(!(puzzleString.split('').every(el => /[1-9]|\./g.test(el)))) {
+      //   res.json({ error: 'Invalid characters in puzzle' });
+      //    return;
+      // }
 
       let row = req.body.coordinate.split("")[0];
       let col = Number(req.body.coordinate.split("")[1])-1;
@@ -54,10 +54,10 @@ module.exports = function (app) {
               row = 'invalid';               
       }
 
-      if(!((col >= 0 && col < 9) && (row === 'invalid'))) {
-        res.json({ error: 'Invalid coordinate'});
-         return;
-      }
+      // if(!((col >= 0 && col < 9) && (row === 'invalid'))) {
+      //   res.json({ error: 'Invalid coordinate'});
+      //    return;
+      // }
     //   let arr1 = [],
     //   arr2 = [], 
     //   arr3 = [],
