@@ -102,7 +102,10 @@ module.exports = function (app) {
           return;
         }
       } else {
-        let validRow, validCol, validReg, conflict = [];
+        res.json({ "valid": false });
+        return;
+      }
+      let validRow, validCol, validReg, conflict = [];
         if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
             validRow = true;
         } else {
@@ -126,7 +129,6 @@ module.exports = function (app) {
           "conflict": conflict
         });
        }
-      }
    });
     
   app.route('/api/solve')
