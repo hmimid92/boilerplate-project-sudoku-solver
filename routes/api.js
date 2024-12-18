@@ -112,12 +112,13 @@ module.exports = function (app) {
       if(
          solver.checkRowPlacement(puzzleString,row,col,val) &&
          solver.checkColPlacement(puzzleString,row,col,val) &&
-         solver.checkRegionPlacement(puzzleString,row,col,val)
+         solver.checkRegionPlacement(puzzleString,row,col,val) &&
+         solver.solve(puzzleString)
        ) {
          res.json({ "valid": true });
          return;
        }
-  }
+    }
      let validRow, validCol, validReg, conflict = [];
         if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
           validRow = true;
