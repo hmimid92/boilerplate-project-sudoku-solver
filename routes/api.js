@@ -108,8 +108,17 @@ module.exports = function (app) {
     //     res.json({ "valid": false });
     //     return;
     //   }
-      let validRow, validCol, validReg, conflict = [];
-  if(sudoko[row][col] !== val) {
+    if(sudoko[row][col] === val) {
+      if(
+         solver.checkRowPlacement(puzzleString,row,col,val) &&
+         solver.checkColPlacement(puzzleString,row,col,val) &&
+         solver.checkRegionPlacement(puzzleString,row,col,val)
+       ) {
+         res.json({ "valid": true });
+         return;
+       }
+  }
+     let validRow, validCol, validReg, conflict = [];
         if(solver.checkRowPlacement(puzzleString,row,col,val)) { 
           validRow = true;
       } else {
@@ -135,19 +144,6 @@ module.exports = function (app) {
       });
       return;
      }
-      } 
-      
-      if(sudoko[row][col] === val) {
-             if(
-                solver.checkRowPlacement(puzzleString,row,col,val) &&
-                solver.checkColPlacement(puzzleString,row,col,val) &&
-                solver.checkRegionPlacement(puzzleString,row,col,val)
-              ) {
-                res.json({ "valid": true });
-                return;
-              }
-         }
-       
    });
     
   app.route('/api/solve')
