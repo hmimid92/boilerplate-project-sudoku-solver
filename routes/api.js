@@ -109,11 +109,12 @@ module.exports = function (app) {
     //     return;
     //   }
     if(sudoko[row][col] === val) {
+      sudoko[row][col] = '.';
+      puzzleString = sudoko.flat().join('');
       if(
          solver.checkRowPlacement(puzzleString,row,col,val) &&
          solver.checkColPlacement(puzzleString,row,col,val) &&
-         solver.checkRegionPlacement(puzzleString,row,col,val) &&
-         solver.solve(puzzleString)
+         solver.checkRegionPlacement(puzzleString,row,col,val)
        ) {
          res.json({ "valid": true });
          return;
