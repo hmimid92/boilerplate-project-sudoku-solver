@@ -12,7 +12,6 @@ module.exports = function (app) {
       let val = req.body.value;
      
       if(Number(val) < 9 && Number(val) > 1 ) {
-        console.log(val)
         res.json({ error: 'Invalid value' });
         return;
       } 
@@ -20,7 +19,10 @@ module.exports = function (app) {
         res.json({ error: 'Required field(s) missing' });
         return;
       } 
-      
+      if(!(Number(val) < 9 && Number(val) > 1 )) {
+        res.json({ error: 'Invalid value' });
+        return;
+      } 
       if(!puzzleString.split('').every(el => /[1-9]|\./g.test(el))) {
         res.json({ error: 'Invalid characters in puzzle' });
          return;
