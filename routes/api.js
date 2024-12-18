@@ -11,7 +11,7 @@ module.exports = function (app) {
       let puzzleString = req.body.puzzle;
       let val = req.body.value;
      
-      if(Number(val) > 9 || Number(val) < 1 ) {
+      if(Number(val) < 9 && Number(val) > 1 ) {
         console.log(val)
         res.json({ error: 'Invalid value' });
         return;
