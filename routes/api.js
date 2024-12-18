@@ -54,10 +54,10 @@ module.exports = function (app) {
               row = 'invalid';               
       }
 
-      // if(!((col >= 0 && col < 9) && (row === 'invalid'))) {
-      //   res.json({ error: 'Invalid coordinate'});
-      //    return;
-      // }
+      if(!((col >= 0 && col < 9) && (row === 'invalid'))) {
+        res.json({ error: 'Invalid coordinate'});
+         return;
+      }
       let arr1 = [],
       arr2 = [], 
       arr3 = [],
