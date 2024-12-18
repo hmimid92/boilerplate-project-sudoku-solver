@@ -130,6 +130,15 @@ module.exports = function (app) {
         "conflict": conflict
       });
      }
+      } else {
+             if(
+                solver.checkRowPlacement(puzzleString,row,col,val) &&
+                solver.checkColPlacement(puzzleString,row,col,val) &&
+                solver.checkRegionPlacement(puzzleString,row,col,val)
+              ) {
+                res.json({ "valid": true });
+                return;
+              }
       }
        
    });
