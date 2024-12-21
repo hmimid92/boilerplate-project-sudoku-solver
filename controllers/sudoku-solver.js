@@ -153,29 +153,30 @@ class SudokuSolver {
       reg9 = [];
     let sudoko = [],sudoko1 = [];
     let arrAll = puzzleString.split("");
-    switch(row) {
-      case 'A': row = 0;
-               break;
-      case 'B': row = 1;
-               break; 
-      case 'C': row = 2;
-               break;        
-      case 'D': row = 3;
-               break;
-      case 'E': row = 4;
-               break; 
-      case 'F': row = 5;
-               break;
-      case 'G': row = 6;
-               break;
-      case 'H': row = 7;
-               break; 
-      case 'I': row = 8;
-               break;  
-      default: 
-            row = 'invalid';               
+    if(Number.isNaN(Number(row))) {
+      switch(row) {
+        case 'A': row = 0;
+                 break;
+        case 'B': row = 1;
+                 break; 
+        case 'C': row = 2;
+                 break;        
+        case 'D': row = 3;
+                 break;
+        case 'E': row = 4;
+                 break; 
+        case 'F': row = 5;
+                 break;
+        case 'G': row = 6;
+                 break;
+        case 'H': row = 7;
+                 break; 
+        case 'I': row = 8;
+                 break;  
+        default: 
+              row = 'invalid';               
+      }
     }
-    
     arrAll.forEach((el,i) => {
       if(i < 9) {
         arr1.push(el);
