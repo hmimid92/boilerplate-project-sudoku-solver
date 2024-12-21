@@ -38,29 +38,6 @@ module.exports = function (app) {
 
       let row = coordinatt.split("")[0];
       let col = Number(coordinatt.split("")[1])-1;
-      switch(row) {
-        case 'A': row = 0;
-                 break;
-        case 'B': row = 1;
-                 break; 
-        case 'C': row = 2;
-                 break;        
-        case 'D': row = 3;
-                 break;
-        case 'E': row = 4;
-                 break; 
-        case 'F': row = 5;
-                 break;
-        case 'G': row = 6;
-                 break;
-        case 'H': row = 7;
-                 break; 
-        case 'I': row = 8;
-                 break;  
-        default: 
-              row = 'invalid';               
-      }
-      
       let arr1 = [],
       arr2 = [], 
       arr3 = [],

@@ -370,7 +370,6 @@ class SudokuSolver {
    puzzleSolved = sudoko.flat().join('');
    }
    solvePuzzle(puzzleString);
-   console.log('h',typeof puzzleSolved)
    return puzzleSolved;
  }
 }
