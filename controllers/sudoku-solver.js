@@ -6,6 +6,7 @@ class SudokuSolver {
    }
 
  checkRowPlacement(puzzleString, row, column, value) {
+  if(Number.isNaN(Number(row))) {
   switch(row) {
     case 'A': row = 0;
              break;
@@ -27,6 +28,7 @@ class SudokuSolver {
              break;  
     default: 
           row = 'invalid';               
+  }
   }
     let arr1 = [],
       arr2 = [],  
