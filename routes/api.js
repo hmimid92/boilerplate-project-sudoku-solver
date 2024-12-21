@@ -5,7 +5,7 @@ const SudokuSolver = require('../controllers/sudoku-solver.js');
 module.exports = function (app) {
   
   let solver = new SudokuSolver();
-
+ 
   app.route('/api/check')
     .post((req, res) => {
       let puzzleString = req.body.puzzle;
@@ -95,19 +95,6 @@ module.exports = function (app) {
       }
     });
       sudoko.push(arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9);
-    //   if((sudoko[row][col] !== val) && (val !== '.')) {
-    //     if(
-    //       solver.checkRowPlacement(puzzleString,row,col,val) &&
-    //       solver.checkColPlacement(puzzleString,row,col,val) &&
-    //       solver.checkRegionPlacement(puzzleString,row,col,val)
-    //     ) {
-    //       res.json({ "valid": true });
-    //       return;
-    //     }
-    //   } else {
-    //     res.json({ "valid": false });
-    //     return;
-    //   }
     if(sudoko[row][col] === val) {
       sudoko[row][col] = '.';
       puzzleString = sudoko.flat().join('');
